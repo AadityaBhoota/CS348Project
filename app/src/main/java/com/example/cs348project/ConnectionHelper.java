@@ -4,8 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.StrictMode;
 import android.util.Log;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class ConnectionHelper {
     Connection con;
@@ -14,25 +13,25 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
 
     public Connection connect() {
-        ip = "127.0.0.1";
+        ip = "10.0.2.2";
         database = "cs348";
         uname = "root";
         pass = "12345678";
-        port = "3306";
+        String url = "jdbc:mysql://10.0.2.2/cs348";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        Connection connection = null;
+        con = null;
         String ConnectionURL = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + database, uname, pass);
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, uname, pass);
 
         } catch (Exception ex) {
             Log.e("Error", ex.getMessage());
         }
-        return connection;
+        return con;
     }
 
 }

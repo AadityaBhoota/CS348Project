@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void helloWorld(View v) {
         Statement st = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 String query = "select * from users";
                 st = conn.createStatement();
                 rs = st.executeQuery(query);
-                System.out.println("worked");
                 while (rs.next()) {
                     System.out.println(rs.getString(1));
                     System.out.println(rs.getString(2));
@@ -55,8 +57,5 @@ public class MainActivity extends AppCompatActivity {
                 } catch (SQLException e) { /* Ignored */}
             }
         }
-    }
-
-    public void helloWorld(View v) {
     }
 }
