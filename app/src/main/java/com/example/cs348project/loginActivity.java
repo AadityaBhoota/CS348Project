@@ -53,7 +53,7 @@ public class loginActivity extends AppCompatActivity {
                     if (pwd.equals(actPass)) {
                         Intent intent = null;
                         if (type.equals("Buyer"))
-                             intent = new Intent(this, buyerActivity.class);
+                             intent = new Intent(this, buyerHomeActivity.class);
                         else
                             intent = new Intent(this, sellerActivity.class);
                         startActivity(intent);
