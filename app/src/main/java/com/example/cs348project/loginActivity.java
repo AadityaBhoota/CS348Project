@@ -14,7 +14,8 @@ import java.sql.*;
 
 
 public class loginActivity extends AppCompatActivity {
-    String ConnectionResult = "";
+    public static String uname = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class loginActivity extends AppCompatActivity {
                 int radioId = g.getCheckedRadioButtonId();
                 RadioButton b = (RadioButton) findViewById(radioId);
                 String type = b.getText().toString();
-                String uname = user.getText().toString();
+                uname = user.getText().toString();
                 String pwd = pass.getText().toString();
                 String query = "Select * from " + type + "s where username = '" + uname + "'";
                 st = conn.createStatement();
