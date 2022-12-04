@@ -27,7 +27,6 @@ public class loginActivity extends AppCompatActivity {
         Statement st = null;
         ResultSet rs = null;
         Connection conn = null;
-        System.out.println("");
         try {
             ConnectionHelper ch = new ConnectionHelper();
             conn = ch.connect();
