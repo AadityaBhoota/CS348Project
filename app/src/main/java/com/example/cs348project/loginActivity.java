@@ -52,10 +52,14 @@ public class loginActivity extends AppCompatActivity {
                 if (!actUname.equals("")) {
                     if (pwd.equals(actPass)) {
                         Intent intent = null;
-                        if (type.equals("Buyer"))
-                             intent = new Intent(this, buyerHomeActivity.class);
-                        else
-                            intent = new Intent(this, sellerActivity.class);
+                        if (type.equals("Buyer")) {
+                            intent = new Intent(this, buyerHomeActivity.class);
+                            intent.putExtra("id", uname);
+                        }
+                        else {
+                            intent = new Intent(this, SellerHomeActivity.class);
+                            intent.putExtra("id", uname);
+                        }
                         startActivity(intent);
                         Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show();
                         finish();
@@ -63,7 +67,7 @@ public class loginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    query = "Insert into " + type + "s values ('" + uname + "', '" + pwd + "')";
+                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "')";
                     System.out.println(query);
                     st = conn.createStatement();
                     st.executeUpdate(query);
