@@ -22,7 +22,6 @@ public class ConnectionHelper {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         con = null;
-        String ConnectionURL = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
