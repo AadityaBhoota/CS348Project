@@ -63,7 +63,7 @@ public class loginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "')";
+                    query = "Insert into " + type + "s values ('" + uname + "', '" + pwd + "')";
                     System.out.println(query);
                     st = conn.createStatement();
                     st.executeUpdate(query);
