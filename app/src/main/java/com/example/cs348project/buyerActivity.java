@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,15 +13,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class buyerActivity extends AppCompatActivity {
 
     Connection conn;
     Statement stmt;
     ResultSet result;
-//    ListView listview = findViewById(R.id.category_data);
-//    String[] headers = {"ID","Name","Category"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +36,26 @@ public class buyerActivity extends AppCompatActivity {
             conn = ch.connect();
             if (conn != null) {
 
-                String sql = "select * from product where category='" + category + "'";
+                String sql = "select CONCAT(p.name, \"    $\", w.price) from warehouse w join product p on w.product_id = p.product_id where p.category='" + category + "'";
                 stmt = conn.createStatement();
                 result = stmt.executeQuery(sql);
 
+                ArrayList<String> arr = new ArrayList<String>();
+
+
                 while (result.next()) {
-                    TextView id = (TextView) findViewById(R.id.textView4);
-                    TextView name = (TextView) findViewById(R.id.textView5);
-                    TextView cat = (TextView) findViewById(R.id.textView6);
-                    id.setText(result.getString(1));
-                    name.setText(result.getString(2));
-                    cat.setText(result.getString(3));
+                    arr.add(result.getString(1));
                 }
+
+
+                ArrayAdapter<String> listy = new ArrayAdapter<>(getApplicationContext(),
+                        android.R.layout.simple_list_item_multiple_choice, arr);
+
+
+                ListView viewList = findViewById(R.id.listview);
+                viewList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                viewList.setAdapter(listy);
+
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -67,4 +77,5 @@ public class buyerActivity extends AppCompatActivity {
             }
         }
     }
+
 }
