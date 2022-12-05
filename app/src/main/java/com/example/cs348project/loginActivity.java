@@ -9,13 +9,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 import java.sql.*;
+import java.util.Locale;
 
 
 public class loginActivity extends AppCompatActivity {
     public static String uname = "";
-
+    public static LocalDate today = java.time.LocalDate.now();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,7 @@ public class loginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "')";
+                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "', '" + today + "' )";
                     System.out.println(query);
                     st = conn.createStatement();
                     st.executeUpdate(query);

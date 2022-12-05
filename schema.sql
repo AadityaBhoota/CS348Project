@@ -29,7 +29,7 @@ CREATE TABLE product (
   product_id int(9) NOT NULL,
   name varchar(30) NOT NULL,
   category varchar(30) NOT NULL,
-  brand varchar(30) NOT NULL,
+  brand varchar(30),
   PRIMARY KEY (product_id)
 );
 
@@ -40,9 +40,7 @@ CREATE TABLE product (
 CREATE TABLE sellers (
   username varchar(30) NOT NULL,
   password varchar(30) NOT NULL,
-  first_name varchar(30) NOT NULL,
-  date_of_creation date NOT NULL,
-  last_name varchar(30) NOT NULL,
+  date_of_creation date,
   PRIMARY KEY (username)
 );
 
@@ -55,6 +53,7 @@ CREATE TABLE warehouse (
   product_id int(9) NOT NULL,
   quantity int(11) NOT NULL,
   price decimal(10,2) NOT NULL,
+  items_sold int(11),
   PRIMARY KEY (seller_id,product_id)
 );
 

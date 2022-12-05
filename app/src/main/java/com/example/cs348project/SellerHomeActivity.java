@@ -2,10 +2,9 @@ package com.example.cs348project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,49 +12,43 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-public class buyerActivity extends AppCompatActivity {
+public class SellerHomeActivity extends AppCompatActivity {
 
     Connection conn;
     Statement stmt;
     ResultSet result;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer);
-
-        Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        setContentView(R.layout.activity_seller_home);
 
         try {
             ConnectionHelper ch = new ConnectionHelper();
             conn = ch.connect();
+
+            Intent intent = getIntent();
+            String seller_id = intent.getStringExtra("id");
+
             if (conn != null) {
 
-                String sql = "select CONCAT(p.name, \"    $\", w.price) from warehouse w join product p on w.product_id = p.product_id where p.category='" + category + "'";
+                String sql = "Select DISTINCT p.name from warehouse w join product p on w.product_id = p.product_id where w.seller_id = '" + seller_id + "';";
                 stmt = conn.createStatement();
                 result = stmt.executeQuery(sql);
-
-                ArrayList<String> arr = new ArrayList<String>();
-
-
-                while (result.next()) {
-                    arr.add(result.getString(1));
+                TextView product_name = (TextView) findViewById(R.id.products);
+                if (!result.next()) {
+                    product_name.setText("You are not selling any products currently!");
                 }
 
-
-                ArrayAdapter<String> listy = new ArrayAdapter<>(getApplicationContext(),
-                        android.R.layout.simple_list_item_multiple_choice, arr);
-
-
-                ListView viewList = findViewById(R.id.listview);
-                viewList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                viewList.setAdapter(listy);
-
+                while (result.next()) {
+//                    TextView name = (TextView) findViewById(R.id.textView5);
+//                    TextView cat = (TextView) findViewById(R.id.textView6);
+                    product_name.append(result.getString(1) + "\n");
+//                    name.setText(result.getString(2));
+//                    cat.setText(result.getString(3));
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -77,5 +70,6 @@ public class buyerActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
