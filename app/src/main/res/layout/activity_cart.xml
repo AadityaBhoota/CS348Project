@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".cartActivity">
 
-<<<<<<< Updated upstream
     <ListView
         android:id="@+id/listview"
         android:layout_width="414dp"
@@ -39,6 +38,4 @@
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toBottomOf="@+id/listview" />
 
-=======
->>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>
