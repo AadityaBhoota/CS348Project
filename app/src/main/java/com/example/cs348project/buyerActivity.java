@@ -100,9 +100,5 @@ public class buyerActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }

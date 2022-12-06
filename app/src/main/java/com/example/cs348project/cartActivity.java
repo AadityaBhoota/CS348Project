@@ -2,6 +2,7 @@ package com.example.cs348project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< Updated upstream
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,11 +19,17 @@ public class cartActivity extends AppCompatActivity {
     Connection conn;
     Statement stmt;
     ResultSet result;
+=======
+import android.os.Bundle;
+
+public class cartActivity extends AppCompatActivity {
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+<<<<<<< Updated upstream
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
 
@@ -85,5 +92,7 @@ public class cartActivity extends AppCompatActivity {
         Intent intent = new Intent(this, checkoutActivity.class);
         startActivity(intent);
         finish();
+=======
+>>>>>>> Stashed changes
     }
 }
