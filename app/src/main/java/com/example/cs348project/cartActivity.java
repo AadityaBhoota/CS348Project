@@ -49,7 +49,7 @@ public class cartActivity extends AppCompatActivity {
                         android.R.layout.simple_list_item_multiple_choice, arr);
 
 
-                ListView viewList = findViewById(R.id.listview);
+                ListView viewList = findViewById(R.id.sellerView);
                 viewList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                 viewList.setAdapter(listy);
 
