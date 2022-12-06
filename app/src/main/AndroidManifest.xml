@@ -16,6 +16,13 @@
         android:theme="@style/Theme.Cs348Project"
         tools:targetApi="31">
         <activity
+            android:name=".wishlistActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".checkoutActivity"
             android:exported="false">
             <meta-data
