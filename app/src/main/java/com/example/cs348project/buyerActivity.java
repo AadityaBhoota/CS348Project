@@ -109,7 +109,7 @@ public class buyerActivity extends AppCompatActivity {
             if (conn != null) {
                 for (int i = 0; i < priceView.getAdapter().getCount(); i++) {
                     if (checked.get(i)) {
-                        query = "Insert into cart values (\"" + buyer_id + "\"," + prices.get(i) + "," + productIDs.get(i) + ", 1)";
+                        query = "Insert into cart values (\"" + buyer_id + "\"," + productIDs.get(i) + "," + prices.get(i) + ", 1)";
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
                     }
@@ -136,6 +136,7 @@ public class buyerActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, cartActivity.class);
         intent.putExtra("category", category);
+        intent.putExtra("user", buyer_id);
         startActivity(intent);
         finish();
     }
@@ -149,7 +150,7 @@ public class buyerActivity extends AppCompatActivity {
             if (conn != null) {
                 for (int i = 0; i < priceView.getAdapter().getCount(); i++) {
                     if (checked.get(i)) {
-                        query = "Insert into wishlist values (\"" + buyer_id + "\"," + prices.get(i) + "," + productIDs.get(i) + ")";
+                        query = "Insert into wishlist values (\"" + buyer_id + "\"," + productIDs.get(i) + "," + prices.get(i) + ")";
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
                     }
@@ -176,6 +177,7 @@ public class buyerActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, wishlistActivity.class);
         intent.putExtra("category", category);
+        intent.putExtra("user", buyer_id);
         startActivity(intent);
         finish();
     }

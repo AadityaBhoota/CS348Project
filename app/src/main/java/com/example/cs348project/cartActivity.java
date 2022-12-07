@@ -26,6 +26,7 @@ public class cartActivity extends AppCompatActivity {
     ArrayList<String> products;
     ArrayList<String> prices;
     String buyer_id;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,10 @@ public class cartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         Intent intent = getIntent();
+        category = intent.getStringExtra("category");
         buyer_id = intent.getStringExtra("user");
+        products = new ArrayList<>();
+        prices = new ArrayList<>();
 
 
         try {
@@ -51,20 +55,16 @@ public class cartActivity extends AppCompatActivity {
                     prices.add(result.getString(2));
                 }
 
-
                 productAdapter = new ArrayAdapter<>(getApplicationContext(),
                         android.R.layout.simple_list_item_1, products);
                 priceAdapter = new ArrayAdapter<>(getApplicationContext(),
                         android.R.layout.simple_list_item_1, prices);
 
 
-                ListView productView = findViewById(R.id.productView2);
-
+                productView = findViewById(R.id.productView2);
+                priceView = findViewById(R.id.priceView2);
                 productView.setAdapter(productAdapter);
-                ListView priceView = findViewById(R.id.priceView2);
-
-                productView.setAdapter(priceAdapter);
-
+                priceView.setAdapter(priceAdapter);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -89,13 +89,16 @@ public class cartActivity extends AppCompatActivity {
 
     public void back(View v) {
         Intent intent = new Intent(this, buyerActivity.class);
+        intent.putExtra("category", category);
+        intent.putExtra("user", buyer_id);
         startActivity(intent);
         finish();
-//        intent.putExtra("id", uname);
+
     }
 
     public void checkOut(View v) {
         Intent intent = new Intent(this, checkoutActivity.class);
+//        intent.putExtra("category", category);
         startActivity(intent);
         finish();
     }
