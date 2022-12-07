@@ -82,26 +82,68 @@
         android:layout_width="154dp"
         android:layout_height="19dp"
         android:layout_marginStart="77dp"
-        android:layout_marginTop="218dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="47dp"
-        android:layout_marginBottom="11dp"
-        android:text="Your Products:"
-        app:layout_constraintBottom_toTopOf="@+id/products"
+        android:text="Your Top 5 Products:"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/inventory"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/products"
-        android:layout_width="166dp"
-        android:layout_height="422dp"
+        android:layout_width="141dp"
+        android:layout_height="301dp"
         android:layout_marginStart="29dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="212dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/updateProduct"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/items_sold"
+        android:layout_width="34dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="212dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/products"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="Product"
+        app:layout_constraintBottom_toTopOf="@+id/products"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/inventory"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="10dp"
+        android:text="# Sold"
+        app:layout_constraintBottom_toTopOf="@+id/items_sold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
