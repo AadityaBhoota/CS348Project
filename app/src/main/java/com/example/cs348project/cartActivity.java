@@ -19,13 +19,21 @@ public class cartActivity extends AppCompatActivity {
     Statement stmt;
     ResultSet result;
 
+    ArrayAdapter<String> priceAdapter;
+    ArrayAdapter<String> productAdapter;
+    ListView productView;
+    ListView priceView;
+    ArrayList<String> products;
+    ArrayList<String> prices;
+    String buyer_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
         Intent intent = getIntent();
-        String user = intent.getStringExtra("user");
+        buyer_id = intent.getStringExtra("user");
 
 
         try {
@@ -33,25 +41,29 @@ public class cartActivity extends AppCompatActivity {
             conn = ch.connect();
             if (conn != null) {
 
-                String sql = "select p.product_name from cart c join product p on ";
+                String sql = "select p.name, c.price from cart c join product p on p.product_id=c.product_id where buyer_id=\"" + buyer_id+"\"";
                 stmt = conn.createStatement();
                 result = stmt.executeQuery(sql);
 
-                ArrayList<String> arr = new ArrayList<String>();
-
 
                 while (result.next()) {
-                    arr.add(result.getString(1));
+                    products.add(result.getString(1));
+                    prices.add(result.getString(2));
                 }
 
 
-                ArrayAdapter<String> listy = new ArrayAdapter<>(getApplicationContext(),
-                        android.R.layout.simple_list_item_multiple_choice, arr);
+                productAdapter = new ArrayAdapter<>(getApplicationContext(),
+                        android.R.layout.simple_list_item_1, products);
+                priceAdapter = new ArrayAdapter<>(getApplicationContext(),
+                        android.R.layout.simple_list_item_1, prices);
 
 
-                ListView viewList = findViewById(R.id.sellerView);
-                viewList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                viewList.setAdapter(listy);
+                ListView productView = findViewById(R.id.productView2);
+
+                productView.setAdapter(productAdapter);
+                ListView priceView = findViewById(R.id.priceView2);
+
+                productView.setAdapter(priceAdapter);
 
             }
         } catch (Exception e) {
@@ -75,7 +87,7 @@ public class cartActivity extends AppCompatActivity {
         }
     }
 
-    public void back(View v){
+    public void back(View v) {
         Intent intent = new Intent(this, buyerActivity.class);
         startActivity(intent);
         finish();
