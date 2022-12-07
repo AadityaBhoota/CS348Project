@@ -26,6 +26,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "food");
+                intent.putExtra("user", getIntent().getStringExtra("id"));
                 startActivity(intent);
                 finish();
             }
@@ -36,6 +37,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "electronics");
+                intent.putExtra("user", getIntent().getStringExtra("id"));
                 startActivity(intent);
                 finish();
             }
@@ -46,6 +48,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "home");
+                intent.putExtra("user", getIntent().getStringExtra("id"));
                 startActivity(intent);
                 finish();
             }
@@ -56,6 +59,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "fashion");
+                intent.putExtra("user", getIntent().getStringExtra("id"));
                 startActivity(intent);
                 finish();
             }

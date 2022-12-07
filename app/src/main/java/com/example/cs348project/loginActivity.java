@@ -72,7 +72,6 @@ public class loginActivity extends AppCompatActivity {
                     }
                 } else {
                     query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "', '" + today + "' )";
-                    System.out.println(query);
                     st = conn.createStatement();
                     st.executeUpdate(query);
                     Toast.makeText(this, "Created new user: " + uname, Toast.LENGTH_SHORT).show();
