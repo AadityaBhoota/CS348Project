@@ -31,6 +31,7 @@ public class buyerActivity extends AppCompatActivity {
     ArrayList<String> prices;
     ArrayList<String> productIDs;
     String buyer_id;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,9 @@ public class buyerActivity extends AppCompatActivity {
         productView = findViewById(R.id.productView);
         priceView = findViewById(R.id.priceView);
 
+
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        category = intent.getStringExtra("category");
         buyer_id = intent.getStringExtra("user");
 
         try {
@@ -132,6 +134,10 @@ public class buyerActivity extends AppCompatActivity {
                 } catch (SQLException e) { /* Ignored */}
             }
         }
+        Intent intent = new Intent(this, cartActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
+        finish();
     }
 
     public void addToWishlist(View v)  {
@@ -168,5 +174,9 @@ public class buyerActivity extends AppCompatActivity {
                 } catch (SQLException e) { /* Ignored */}
             }
         }
+        Intent intent = new Intent(this, wishlistActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
+        finish();
     }
 }
