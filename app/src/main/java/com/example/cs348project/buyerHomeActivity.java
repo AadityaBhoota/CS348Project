@@ -42,7 +42,7 @@ public class buyerHomeActivity extends AppCompatActivity {
                 finish();
             }
         });
-//this
+
         homebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
