@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -37,13 +38,24 @@ public class checkoutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ConnectionHelper ch;
         buyer_id = intent.getStringExtra("user");
+        productIDs = new ArrayList<>();
+        products = new ArrayList<>();
+        prices = new ArrayList<>();
         sellers = intent.getStringArrayListExtra("sellers");
 
         try {
             ch = new ConnectionHelper();
             conn = ch.connect();
             if (conn != null) {
-                String sql = "select p.name, c.price, p.product_id from cart c join product p on p.product_id=c.product_id where buyer_id=\"" + buyer_id+"\"";
+                String sql = "select sum(c.price) from cart c where buyer_id=\"" + buyer_id+"\"";
+                stmt = conn.createStatement();
+                result = stmt.executeQuery(sql);
+                TextView price = (TextView) findViewById(R.id.totalText);
+                while (result.next()) {
+                    price.setText("$"+result.getString(1));
+                }
+
+                sql = "select p.name, c.price, p.product_id from cart c join product p on p.product_id=c.product_id where buyer_id=\"" + buyer_id+"\"";
                 stmt = conn.createStatement();
                 result = stmt.executeQuery(sql);
 
