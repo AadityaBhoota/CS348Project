@@ -8,8 +8,9 @@
 
     <ListView
         android:id="@+id/productView3"
-        android:layout_width="207dp"
+        android:layout_width="190dp"
         android:layout_height="511dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toStartOf="@+id/priceView3"
         app:layout_constraintStart_toStartOf="parent"
