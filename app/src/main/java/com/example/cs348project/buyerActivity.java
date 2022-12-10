@@ -8,6 +8,7 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -116,7 +117,7 @@ public class buyerActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             if (result != null) {
                 try {
@@ -177,6 +178,7 @@ public class buyerActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, wishlistActivity.class);
         intent.putExtra("category", category);
+        intent.putStringArrayListExtra("sellers", sellers);
         intent.putExtra("user", buyer_id);
         startActivity(intent);
         finish();

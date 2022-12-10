@@ -79,7 +79,7 @@ public class loginActivity extends AppCompatActivity {
             }
         } catch (
                 Exception E) {
-            System.out.println(E.getMessage());
+            Toast.makeText(this, E.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             if (rs != null) {
                 try {

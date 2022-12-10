@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class cartActivity extends AppCompatActivity {
     ListView priceView;
     ArrayList<String> products;
     ArrayList<String> prices;
+    ArrayList<String> sellers;
     String buyer_id;
     String category;
 
@@ -36,6 +38,7 @@ public class cartActivity extends AppCompatActivity {
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
         buyer_id = intent.getStringExtra("user");
+        sellers = intent.getStringArrayListExtra("sellers");
         products = new ArrayList<>();
         prices = new ArrayList<>();
 
@@ -67,7 +70,7 @@ public class cartActivity extends AppCompatActivity {
                 priceView.setAdapter(priceAdapter);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             if (result != null) {
                 try {
@@ -99,6 +102,8 @@ public class cartActivity extends AppCompatActivity {
     public void checkOut(View v) {
         Intent intent = new Intent(this, checkoutActivity.class);
 //        intent.putExtra("category", category);
+        intent.putStringArrayListExtra(("sellers"), sellers);
+        intent.putExtra(("user"), buyer_id);
         startActivity(intent);
         finish();
     }
