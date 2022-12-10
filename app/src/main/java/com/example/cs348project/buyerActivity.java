@@ -138,6 +138,7 @@ public class buyerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, cartActivity.class);
         intent.putExtra("category", category);
         intent.putExtra("user", buyer_id);
+        intent.putStringArrayListExtra("sellers", sellers);
         startActivity(intent);
         finish();
     }
@@ -178,7 +179,7 @@ public class buyerActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, wishlistActivity.class);
         intent.putExtra("category", category);
-        intent.putStringArrayListExtra("sellers", sellers);
+//        intent.putStringArrayListExtra("sellers", sellers);
         intent.putExtra("user", buyer_id);
         startActivity(intent);
         finish();

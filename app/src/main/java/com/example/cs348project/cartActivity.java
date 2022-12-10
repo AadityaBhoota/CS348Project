@@ -102,7 +102,7 @@ public class cartActivity extends AppCompatActivity {
     public void checkOut(View v) {
         Intent intent = new Intent(this, checkoutActivity.class);
 //        intent.putExtra("category", category);
-        intent.putStringArrayListExtra(("sellers"), sellers);
+        intent.putStringArrayListExtra("sellers", sellers);
         intent.putExtra(("user"), buyer_id);
         startActivity(intent);
         finish();

@@ -64,6 +64,7 @@ public class checkoutActivity extends AppCompatActivity {
                 priceView.setAdapter(priceAdapter);
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             if (result != null) {
