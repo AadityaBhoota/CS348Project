@@ -44,7 +44,7 @@ public class SellerHomeActivity extends AppCompatActivity {
         try {
 
             Intent intent = getIntent();
-            seller_id = intent.getStringExtra("id");
+            seller_id = intent.getStringExtra("user");
 
             inventory = (Button) findViewById(R.id.inventory);
             inventory.setOnClickListener(new View.OnClickListener() {
