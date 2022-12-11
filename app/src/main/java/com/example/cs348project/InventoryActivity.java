@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.Button;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,6 +18,7 @@ public class InventoryActivity extends AppCompatActivity {
     Connection conn;
     ResultSet products;
     Statement stmt1;
+    String seller_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class InventoryActivity extends AppCompatActivity {
             conn = ch.connect();
 
             Intent intent = getIntent();
-            String seller_id = intent.getStringExtra("id");
+            seller_id = intent.getStringExtra("id");
 
             if (conn != null) {
 
@@ -39,7 +39,7 @@ public class InventoryActivity extends AppCompatActivity {
                 products = stmt1.executeQuery(sql);
                 TextView product_id = (TextView) findViewById(R.id.productID);
                 product_id.setGravity(Gravity.CENTER);
-                TextView product_name = (TextView) findViewById(R.id.productName);
+                TextView product_name = (TextView) findViewById(R.id.productNameSelected);
                 product_name.setGravity(Gravity.CENTER);
                 TextView quantity = (TextView) findViewById(R.id.quantity);
                 quantity.setGravity(Gravity.CENTER);
@@ -81,6 +81,12 @@ public class InventoryActivity extends AppCompatActivity {
                 } catch (SQLException e) { /* Ignored */}
             }
         }
+    }
+
+    public void back(View v) {
+        Intent intentToSend = new Intent(InventoryActivity.this, SellerHomeActivity.class);
+        intentToSend.putExtra("id", seller_id);
+        startActivity(intentToSend);
     }
 
 

@@ -42,7 +42,6 @@ public class DeleteActivity extends AppCompatActivity {
     }
 
     public void deleteClick(View v) {
-        System.out.println("Inside");
         try {
             conn = ch.connect();
             deleteStatement = conn.createStatement();
