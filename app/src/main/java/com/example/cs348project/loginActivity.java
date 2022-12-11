@@ -40,7 +40,7 @@ public class loginActivity extends AppCompatActivity {
                 RadioGroup g = (RadioGroup) findViewById(R.id.radioGroup);
                 int radioId = g.getCheckedRadioButtonId();
                 RadioButton b = (RadioButton) findViewById(radioId);
-                String type = b.getText().toString();
+                String type = b.getText().toString().toLowerCase();
                 uname = user.getText().toString();
                 String pwd = pass.getText().toString();
                 String query = "Select * from " + type + "s where username = '" + uname + "'";
@@ -56,13 +56,13 @@ public class loginActivity extends AppCompatActivity {
                 if (!actUname.equals("")) {
                     if (pwd.equals(actPass)) {
                         Intent intent = null;
-                        if (type.equals("Buyer")) {
+                        if (type.equals("buyer")) {
                             intent = new Intent(this, buyerHomeActivity.class);
-                            intent.putExtra("id", uname);
+                            intent.putExtra("user", uname);
                         }
                         else {
                             intent = new Intent(this, SellerHomeActivity.class);
-                            intent.putExtra("id", uname);
+                            intent.putExtra("user", uname);
                         }
                         startActivity(intent);
                         Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show();
@@ -71,7 +71,7 @@ public class loginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "', '" + today + "' )";
+                    query = "Insert into " + type + "s values('" + uname + "', '" + pwd + "')";
                     st = conn.createStatement();
                     st.executeUpdate(query);
                     Toast.makeText(this, "Created new user: " + uname, Toast.LENGTH_SHORT).show();

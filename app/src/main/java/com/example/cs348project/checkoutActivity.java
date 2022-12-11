@@ -108,12 +108,16 @@ public class checkoutActivity extends AppCompatActivity {
             conn = ch.connect();
             if (conn != null) {
                 for (int i = 0; i < productIDs.size(); i++) {
-//                    query = "Update warehouse where ";
-                    System.out.println("Query here");
-//                    st = conn.createStatement();
-//                    st.executeUpdate(query);
+                    String sql = "CALL warehouse_quantity(" + productIDs.get(i) + ", \"" + sellers.get(i) + "\", 1, \"" + buyer_id + "\")";
+                    Statement stmt = conn.createStatement();
+                    stmt.execute(sql);
                 }
             }
+            Toast.makeText(this, "Order Has been Placed! Redirecting to home", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, buyerHomeActivity.class);
+            intent.putExtra("user", buyer_id);
+            startActivity(intent);
+            finish();
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {

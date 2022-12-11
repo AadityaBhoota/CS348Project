@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 public class buyerHomeActivity extends AppCompatActivity {
 
     ImageButton foodbtn, elecbtn, homebtn, fashbtn;
+    String buyer_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class buyerHomeActivity extends AppCompatActivity {
         elecbtn = (ImageButton) findViewById(R.id.simpleImageButtonElectronics);
         homebtn = (ImageButton) findViewById(R.id.simpleImageButtonHome);
         fashbtn = (ImageButton) findViewById(R.id.simpleImageButtonFashion);
+        buyer_id = getIntent().getStringExtra("user");
 
 
         foodbtn.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +28,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "food");
-                intent.putExtra("user", getIntent().getStringExtra("id"));
+                intent.putExtra("user", buyer_id);
                 startActivity(intent);
                 finish();
             }
@@ -37,7 +39,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "electronics");
-                intent.putExtra("user", getIntent().getStringExtra("id"));
+                intent.putExtra("user", buyer_id);
                 startActivity(intent);
                 finish();
             }
@@ -48,7 +50,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "home");
-                intent.putExtra("user", getIntent().getStringExtra("id"));
+                intent.putExtra("user", buyer_id);
                 startActivity(intent);
                 finish();
             }
@@ -59,7 +61,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
                 intent.putExtra("category", "fashion");
-                intent.putExtra("user", getIntent().getStringExtra("id"));
+                intent.putExtra("user", buyer_id);
                 startActivity(intent);
                 finish();
             }

@@ -13,11 +13,12 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
 
     public Connection connect() {
-        ip = "10.0.2.2";
+
+        ip = "34.123.191.70";
         database = "cs348";
         uname = "root";
         pass = "12345678";
-        String url = "jdbc:mysql://10.0.2.2/cs348";
+        String url = "jdbc:mysql://34.123.191.70/cs348";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
