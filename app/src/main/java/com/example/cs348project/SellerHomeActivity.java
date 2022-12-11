@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +28,12 @@ public class SellerHomeActivity extends AppCompatActivity {
     Button addProduct;
     Button updateProduct;
     Button deleteProduct;
+    TextView product_name;
+    TextView items_sold;
+    TextView labelProduct;
+    TextView labelSold;
+    TextView top5;
+    String seller_id;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -34,77 +42,89 @@ public class SellerHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seller_home);
 
         try {
-            ConnectionHelper ch = new ConnectionHelper();
-            conn = ch.connect();
 
             Intent intent = getIntent();
-            String seller_id = intent.getStringExtra("id");
+            seller_id = intent.getStringExtra("id");
+
+            inventory = (Button) findViewById(R.id.inventory);
+            inventory.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openActivity("Inventory", seller_id);
+                }
+            });
+
+            addProduct = (Button) findViewById(R.id.addProduct);
+            addProduct.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openActivity("Add", seller_id);
+                }
+            });
+
+            updateProduct = (Button) findViewById(R.id.updateProduct);
+            updateProduct.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openActivity("Update", seller_id);
+                }
+            });
+
+            deleteProduct = (Button) findViewById(R.id.deleteProduct);
+            deleteProduct.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openActivity("Delete", seller_id);
+                }
+            });
+
+            product_name = (TextView) findViewById(R.id.products);
+            items_sold = (TextView) findViewById(R.id.items_sold);
+            labelProduct = (TextView) findViewById(R.id.ProductLabel);
+            labelSold = (TextView) findViewById(R.id.SoldLabel);
+            top5 = (TextView) findViewById(R.id.textView8);
+
+            ConnectionHelper ch = new ConnectionHelper();
+            conn = ch.connect();
 
             if (conn != null) {
 
                 String sql = "Select DISTINCT p.name, w.items_sold from warehouse w join product p on w.product_id = p.product_id where w.seller_id = '" + seller_id + "' ORDER BY w.items_sold DESC LIMIT 5;";
                 stmt1 = conn.createStatement();
                 products = stmt1.executeQuery(sql);
-                TextView product_name = (TextView) findViewById(R.id.products);
-                TextView items_sold = (TextView) findViewById(R.id.items_sold);
-                if (!products.next()) {
+
+
+
+                if (!products.isBeforeFirst()) {
+                    top5.setVisibility(View.INVISIBLE);
+                    labelSold.setVisibility(View.GONE);
+                    labelProduct.setVisibility(View.GONE);
                     product_name.setText("You are not selling any products currently!");
+                } else {
+                    while (products.next()) {
+                        String product = products.getString(1);
+                        product_name.append(product + "\n");
+
+                        String itemsSold = products.getString(2);
+                        items_sold.append(itemsSold + "\n");
+
+                    }
                 }
 
-                do {
-                    String product = products.getString(1);
-                    product_name.append(product + "\n");
-
-                    String itemsSold = products.getString(2);
-                    items_sold.append(itemsSold + "\n");
-
-                } while (products.next());
 
                 String sql2 = "select SUM(items_sold * price) from warehouse group by seller_id having seller_id = '" + seller_id + "';";
                 stmt2 = conn.createStatement();
                 totalSales = stmt2.executeQuery(sql2);
                 TextView total_sales = (TextView) findViewById(R.id.salesAmt);
 
-                if (!totalSales.next()) {
+                if (!totalSales.isBeforeFirst()) {
                     total_sales.setText("$0.00");
                 } else {
-                   total_sales.setText(totalSales.getString(1));
+                    totalSales.next();
+                    total_sales.setText("$" + totalSales.getString(1));
                 }
-
-                inventory = (Button) findViewById(R.id.inventory);
-                inventory.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        openActivity("Inventory", seller_id);
-                    }
-                });
-
-                addProduct = (Button) findViewById(R.id.addProduct);
-                addProduct.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        openActivity("Add", seller_id);
-                    }
-                });
-
-                updateProduct = (Button) findViewById(R.id.updateProduct);
-                updateProduct.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        openActivity("Update", seller_id);
-                    }
-                });
-
-                deleteProduct = (Button) findViewById(R.id.deleteProduct);
-                deleteProduct.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        openActivity("Delete", seller_id);
-                    }
-                });
-
-                products.close();
 
 
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             if (products != null) {
                 try {
@@ -151,6 +171,12 @@ public class SellerHomeActivity extends AppCompatActivity {
             intentToSend.putExtra("id", seller_id);
         }
         startActivity(intentToSend);
-//        finish();
+        finish();
+    }
+
+    public void back(View v) {
+        Intent intentToSend = new Intent(SellerHomeActivity.this, loginActivity.class);
+        intentToSend.putExtra("id", seller_id);
+        startActivity(intentToSend);
     }
 }
