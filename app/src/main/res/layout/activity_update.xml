@@ -1,9 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:background="#FFFFFF"
+    android:onClick="selectClick"
+    app:layoutDescription="@xml/activity_update_scene"
     tools:context=".UpdateActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Product ID" />
+
+    <EditText
+        android:id="@+id/productID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/textView13"
+        android:width="100dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/productNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productID"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="21dp"
+        android:text="Product Name:" />
+
+    <TextView
+        android:id="@+id/productNameSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/productID"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@id/productNameLabel" />
+
+    <Button
+        android:id="@+id/Select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@id/productID"
+        android:onClick="selectClick"
+        android:text="select" />
+
+    <Button
+        android:id="@+id/ApplyQuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plus"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="27dp"
+        android:layout_toRightOf="@id/productID"
+        android:onClick="applyQuan"
+        android:text="Apply" />
+
+    <Button
+        android:id="@+id/applyPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plus"
+        android:layout_marginLeft="69dp"
+        android:layout_marginTop="246dp"
+        android:layout_toRightOf="@id/productID"
+        android:onClick="applyPrice"
+        android:text="Apply" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plus"
+        android:layout_marginLeft="-45dp"
+        android:layout_marginTop="327dp"
+        android:layout_toRightOf="@id/productID"
+        android:background="#353232"
+        android:onClick="exit"
+        android:text="Back" />
+
+    <TextView
+        android:id="@+id/currentQuantityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productNameLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="75dp"
+        android:text="Current Quantity:" />
+
+    <TextView
+        android:id="@+id/currentPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NewQuanLabel2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="75dp"
+        android:text="Current Price:" />
+
+    <TextView
+        android:id="@+id/currQuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productNameLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="75dp"
+        android:layout_toRightOf="@id/currentQuantityLabel" />
+
+    <TextView
+        android:id="@+id/currPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NewQuanLabel2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:layout_toRightOf="@id/currentPriceLabel" />
+
+    <TextView
+        android:id="@+id/newQuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productNameLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="232dp"
+        android:layout_toRightOf="@id/currentQuantityLabel" />
+
+    <TextView
+        android:id="@+id/newPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productNameLabel"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="448dp"
+        android:layout_toRightOf="@id/currentQuantityLabel" />
+
+    <TextView
+        android:id="@+id/updateQuanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:text="Update Quantity: " />
+
+    <TextView
+        android:id="@+id/updatePriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="292dp"
+        android:text="Update Price: " />
+
+    <TextView
+        android:id="@+id/NewQuanLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="137dp"
+        android:text="New Quantity: " />
+
+    <TextView
+        android:id="@+id/newQuanLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="352dp"
+        android:text="New Quantity: " />
+
+    <EditText
+        android:id="@+id/updateQuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="45dp"
+        android:layout_toRightOf="@id/updateQuanLabel"
+        android:width="35dp"
+        android:height="10dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/updatePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="273dp"
+        android:layout_toRightOf="@id/updateQuanLabel"
+        android:width="35dp"
+        android:height="10dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="45dp"
+        android:layout_toRightOf="@id/updateQuan"
+        android:width="35dp"
+        android:height="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:onClick="plusClickQuan"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/plusPrice"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="274dp"
+        android:layout_toRightOf="@id/updateQuan"
+        android:width="35dp"
+        android:height="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:onClick="plusClickPrice"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/minus"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="-88dp"
+        android:layout_marginTop="46dp"
+        android:layout_toRightOf="@id/updateQuan"
+        android:width="35dp"
+        android:height="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:onClick="minusClickQuan"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/minusPrice"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/currentQuantityLabel"
+        android:layout_marginLeft="-88dp"
+        android:layout_marginTop="273dp"
+        android:layout_toRightOf="@id/updateQuan"
+        android:width="35dp"
+        android:height="35dp"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:onClick="minusClickPrice"
+        android:text="-" />
+
+</RelativeLayout>
