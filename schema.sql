@@ -120,13 +120,13 @@ BEGIN
 	IF product_exists > 0 THEN   -- Which means there is a product with this name
 		open prod_id_cur;
         fetch prod_id_cur into prod_id;
-        insert into warehouse values (seller_id, prod_id, quantitySelected, 0, priceSelected);
+        insert into warehouse values (seller_id, prod_id, quantitySelected, priceSelected, 0);
         close prod_id_cur;
 	ELSE
 		open max_prod_id_cur;
         fetch max_prod_id_cur into prod_id;
         insert into product values (prod_id, prod_name, category, category);
-        insert into warehouse values (seller_id, prod_id, quantitySelected, 0, priceSelected);
+        insert into warehouse values (seller_id, prod_id, quantitySelected, priceSelected, 0);
         close max_prod_id_cur;
 	END IF;
 

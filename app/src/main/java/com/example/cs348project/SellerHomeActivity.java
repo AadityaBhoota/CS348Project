@@ -85,7 +85,7 @@ public class SellerHomeActivity extends AppCompatActivity {
 
             if (conn != null) {
 
-                String sql = "Select DISTINCT p.name, w.items_sold from warehouse w join product p on w.product_id = p.product_id where w.seller_id = '" + seller_id + "' ORDER BY w.items_sold DESC LIMIT 5;";
+                String sql = "Select DISTINCT p.name, count(o.product_id) as total from orders o join product p on o.product_id = p.product_id where o.seller_id = '" + seller_id + "'group by o.product_id ORDER BY total DESC LIMIT 5;";
                 stmt1 = conn.createStatement();
                 products = stmt1.executeQuery(sql);
 
