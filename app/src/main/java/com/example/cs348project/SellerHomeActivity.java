@@ -44,7 +44,7 @@ public class SellerHomeActivity extends AppCompatActivity {
         try {
 
             Intent intent = getIntent();
-            seller_id = intent.getStringExtra("user");
+            seller_id = intent.getStringExtra("id");
 
             inventory = (Button) findViewById(R.id.inventory);
             inventory.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,7 @@ public class SellerHomeActivity extends AppCompatActivity {
                 }
 
 
-                String sql2 = "select SUM(items_sold * price) from warehouse group by seller_id having seller_id = '" + seller_id + "';";
+                String sql2 = "select SUM(price) from orders group by seller_id having seller_id = '" + seller_id + "';";
                 stmt2 = conn.createStatement();
                 totalSales = stmt2.executeQuery(sql2);
                 TextView total_sales = (TextView) findViewById(R.id.salesAmt);
