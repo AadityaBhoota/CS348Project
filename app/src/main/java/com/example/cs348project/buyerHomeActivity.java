@@ -49,7 +49,7 @@ public class buyerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(buyerHomeActivity.this, buyerActivity.class);
-                intent.putExtra("category", "home");
+                intent.putExtra("category", "home appliances");
                 intent.putExtra("user", buyer_id);
                 startActivity(intent);
                 finish();
