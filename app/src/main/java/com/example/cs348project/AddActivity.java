@@ -65,6 +65,7 @@ public class AddActivity extends AppCompatActivity {
         // Checking if product name already exists in the product table.
         try {
             conn = ch.connect();
+            conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             String check = "call sp1('" + prodName + "'," + quantitySelected + ",'" + category + "','" + seller_id + "'," + priceSelected + ");";
             checkStatement = conn.createStatement();
             checks = checkStatement.executeQuery(check);
