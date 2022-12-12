@@ -67,4 +67,10 @@ public class buyerHomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void logout(View v) {
+        Intent intent = new Intent(this, loginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
