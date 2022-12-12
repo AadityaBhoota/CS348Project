@@ -106,10 +106,12 @@ public class buyerActivity extends AppCompatActivity {
         String query = "";
         ConnectionHelper ch = new ConnectionHelper();
         Connection conn = ch.connect();
+        ArrayList<String> sellersBoughtFrom = new ArrayList<>();
         try {
             if (conn != null) {
                 for (int i = 0; i < priceView.getAdapter().getCount(); i++) {
                     if (checked.get(i)) {
+                        sellersBoughtFrom.add(sellers.get(i));
                         query = "Insert into cart values (\"" + buyer_id + "\"," + productIDs.get(i) + "," + prices.get(i) + ", 1)";
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
@@ -138,7 +140,7 @@ public class buyerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, cartActivity.class);
         intent.putExtra("category", category);
         intent.putExtra("user", buyer_id);
-        intent.putStringArrayListExtra("sellers", sellers);
+        intent.putStringArrayListExtra("sellers", sellersBoughtFrom);
         startActivity(intent);
         finish();
     }
