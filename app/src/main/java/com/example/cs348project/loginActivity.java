@@ -62,7 +62,7 @@ public class loginActivity extends AppCompatActivity {
                         }
                         else {
                             intent = new Intent(this, SellerHomeActivity.class);
-                            intent.putExtra("user", uname);
+                            intent.putExtra("id", uname);
                         }
                         startActivity(intent);
                         Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show();
